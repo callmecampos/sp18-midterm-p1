@@ -2,33 +2,33 @@
 
 /* Add the dependencies you're testing */
 const Crowdsale = artifacts.require("./Crowdsale.sol");
-// YOUR CODE HERE
+const Queue = artifacts.require("./Queue.sol");
+const Token = artifacts.require("./Token.sol");
 
 contract('testTemplate', function(accounts) {
-	/* Define your constant variables and instantiate constantly changing 
+	/* Define your constant variables and instantiate constantly changing
 	 * ones
 	 */
-	const args = {};
-	let x, y, z;
-	// YOUR CODE HERE
+	 const args = {};
+ 	let launch;
+ 	// YOUR CODE HERE
 
-	/* Do something before every `describe` method */
-	beforeEach(async function() {
-		// YOUR CODE HERE
-	});
+ 	/* Do something before every `describe` method */
+ 	beforeEach(async function() {
+ 		// YOUR CODE HERE
+ 		launch = await Crowdsale.new();
+		launch.SetDetails(1000000, 1000, "ETH", "Ethereum", 18);
+ 	});
 
-	/* Group test cases together 
-	 * Make sure to provide descriptive strings for method arguements and
-	 * assert statements
-	 */
-	describe('Your string here', function() {
-		it("your string here", async function() {
-			// YOUR CODE HERE
-		});
-		// YOUR CODE HERE
-	});
-
-	describe('Your string here', function() {
-		// YOUR CODE HERE
-	});
+ 	/* Group test cases together
+ 	 * Make sure to provide descriptive strings for method arguements and
+ 	 * assert statements
+ 	 */
+ 	describe('Check', function() {
+ 		it("time cap", async function() {
+ 			// YOUR CODE HERE
+			let cap = launch.setTimeCap(20);
+ 			assert.ok(cap);
+ 		});
+ 	});
 });
